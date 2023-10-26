@@ -36,6 +36,16 @@ export const login = async (req, res, next) => {
 
         const isPassword = await bcrypt.compare(req.body.password, user.password)
         console.log(isPassword);
+
+
+
+        if(isPassword){
+            res.json(user);
+        }else{
+            res.json({message:"user not found!"})
+
+        }
+
         // const newAdmin = new Admin({ email,password:hash })
         // const savedAdmin = await newAdmin.save();
         res.status(200).json(user);
